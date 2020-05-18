@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Gieom Drawing Tool</title>
+
+    <!-- required modeler styles -->
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js@6.4.0/dist/assets/diagram-js.css">
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js@6.4.0/dist/assets/bpmn-font/css/bpmn.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <!-- <script src="https://kit.fontawesome.com/774a38ab8f.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="shortcut icon" href="https://www.gieom.com/wp-content/themes/gieom/favicon.png">
+</head>
+
+<body>
+    <div id="canvas"></div>
+    <div class="view-switch-icons">
+        <ul class="view-buttons">
+            <li class="active">
+                <button class="btn btn-primary">Admin View</button>
+            </li>
+            <li>
+                <button class="btn btn-primary" id="viewSwitcher">Enduser View</button>
+            </li>
+        </ul>
+    </div>
+    <div class="floating-action-buttons">
+        <ul class="create-diagram">
+            <li data-toggle="tooltip" data-placement="top" title="Open an Existing BPMN Diagram" class="import-bpmn">
+                <input id="importBPMN" type="file">
+                <i class="fas fa-folder-plus"></i>
+            </li>
+            <li id="importEmptyDiagram" data-toggle="tooltip" data-placement="top" title="Open a Starter BPMN Diagram">
+                <i class="fas fa-plus-circle"></i>
+            </li>
+            <li data-toggle="tooltip" data-placement="top" title="Try our predefined diagrams">
+                <i data-toggle="modal" data-target="#insertSampleModal" class="fas fa-lightbulb"></i>
+            </li>
+        </ul>
+        <ul class="download-diagram">
+            <li data-toggle="tooltip" data-placement="top" title="Download as BPMN" id="downloadBPMN">
+                <i class="fas fa-download"></i>
+            </li>
+            <!-- <li>
+                <i class="fas fa-image"></i>
+            </li> -->
+        </ul>
+    </div>
+
+    <a href="https://www.gieom.com/" target="_blank" class="copy-right">
+        <img src="https://www.gieom.com/wp-content/themes/gieom/images/logo.png" class="img-fluid" alt="">
+    </a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="insertSampleModal" tabindex="-1" role="dialog" aria-labelledby="insertSampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="insertSampleModalLabel">Select Any One Predefined BPMN To Proceed</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul id="sampleItemList" class="list-group"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/bpmn-js@6.4.0/dist/bpmn-modeler.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

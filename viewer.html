@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Gieom Drawing Tool</title>
+
+    <!-- required modeler styles -->
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js@6.4.0/dist/assets/diagram-js.css">
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js@6.4.0/dist/assets/bpmn-font/css/bpmn.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/774a38ab8f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="shortcut icon" href="https://www.gieom.com/wp-content/themes/gieom/favicon.png">
+</head>
+
+<body>
+    <div id="canvas"></div>
+    <div class="view-switch-icons">
+        <ul class="view-buttons">
+            <li>
+                <button class="btn btn-primary" id="viewSwitcher">Admin View</button>
+            </li>
+            <li class="active">
+                <button class="btn btn-primary">Enduser View</button>
+            </li>
+        </ul>
+    </div>
+
+    <a href="https://www.gieom.com/" target="_blank" class="copy-right">
+        <img src="https://www.gieom.com/wp-content/themes/gieom/images/logo.png" class="img-fluid" alt="">
+    </a>
+
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bpmn-js@6.4.0/dist/bpmn-viewer.development.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var bpmnViewer = new BpmnJS({
+                container: $('#canvas'),
+                height: $(window).height()
+            });
+            bpmnViewer.importXML(sessionStorage.getItem('activeXML'), function (err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    bpmnViewer.get('canvas').zoom('fit-viewport');
+                    console.log('success');
+                }
+            });
+            $('#viewSwitcher').click(function () {
+                window.location.href = window.location.origin;
+            });
+        })
+    </script>
+
+</body>
+
+</html>
