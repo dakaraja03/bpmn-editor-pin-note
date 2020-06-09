@@ -434,6 +434,7 @@ $(document).ready(function() {
     })
 
     $(document).on('click', '.overlay-pin', function(e) {
+        // $('#addPinModal').modal('show');
         $('.djs-overlays').removeClass('show-overlay-note');
         $('.djs-overlays').removeClass('show-overlay-add-note');
         $(this).parent().parent().toggleClass('show-overlay-note');
@@ -557,14 +558,14 @@ $(document).ready(function() {
         }
 
         var shapeId = $(this).parent().parent().parent().parent().attr("data-container-id") ? $(this).parent().parent().parent().parent().attr("data-container-id") : null;
-        var values = values.length > 0 ? values.join(";") : null;
+        var PinData = values.length > 0 ? values.join(";") : null;
         var data = {
             ShapeId: shapeId,
-            PinData: values,
+            PinData: PinData,
             PinType: "Pin",
         };
         if (data !== null) {
-            addPinDetailsToDB(data);
+            // addPinDetailsToDB(data);
         }
 
     });
@@ -605,14 +606,14 @@ $(document).ready(function() {
         // }
 
         var shapeId = $(this).parent().parent().parent().parent().attr('data-container-id') ? $(this).parent().parent().parent().parent().attr('data-container-id') : null;
-        var values = values.map(val => val["value"]).length > 0 ? values.map(val => val["value"]).join(";") : null;
+        var PinData = values.map(val => val["value"]).length > 0 ? values.map(val => val["value"]).join(";") : null;
         var data = {
             ShapeId: shapeId,
-            PinData: values,
+            PinData: PinData,
             PinType: "Note",
         };
         if (data !== null) {
-            addPinDetailsToDB(data);
+            // addPinDetailsToDB(data);
         }
     });
 
@@ -663,7 +664,17 @@ $(document).ready(function() {
     }
 
     async function getPinDetailsFromDB(objectId = "", url = "") {       
-        objectId = "00000000-0000-0000-0000-000000000000";
+        var queryParams = window.location.search.substring(1);
+        var parameters = queryParams.split("=")
+        var objectId = null;    
+        if (parameters.length > 0) {
+            if (parameters[0] === "objectId") {
+                objectId = parameters[1]
+            }
+        }
+
+        // objectId = "00000000-0000-0000-0000-000000000000";
+
         url = "http://local.main.com/Node/GetPinDataBPMN";
         var pinResult = null;
 
